@@ -1,7 +1,8 @@
 
 
 const list = async ctx => {
-  ctx.body = '路由改造后结果'
+  // const b = a;
+  ctx.body = '返回结果'
 }
 const postBody = async ctx => {
   console.log(ctx.request.body)

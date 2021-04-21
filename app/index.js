@@ -38,7 +38,14 @@ const HOST = '0.0.0.0';
 // app.use(router.allowedMethods());
 
 app.use(compose(MD))
-
+app.on('error', (err, ctx) => {
+  if (ctx) {
+    ctx.body = {
+      code: 9999,
+      message: `程序运行时报错：${err.message}`
+    };
+  }
+});
 app.listen(PORT, HOST, () => {
   console.log(` serer listening on ${HOST}:${PORT}`)
 })
