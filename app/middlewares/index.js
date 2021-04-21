@@ -2,9 +2,11 @@
 
 const router = require('../router');
 const koaBody = require('koa-bodyparser');
+const cors = require('@koa/cors');
 
 const response = require('./response');
 const error = require('./error');
+const log = require('./log');
 
 /**
  * 参数解析
@@ -26,10 +28,23 @@ const MDROuterAllowed = router.allowedMethods();
 //  统一处理
 const MDHandleRes = response();
 const MDHandleErr = error();
+/**
+ * 跨域设置
+ */
+const MDCors = cors({
+  origin: '*',
+  credentials: true,
+  allowMethods: [ 'GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'PATCH' ]
+});
+/**
+ * 日志
+ */
 
-
+const MDLogger = log();
 module.exports = [
   MDKoaBody,
+  MDCors,
+  MDLogger,
   MDHandleRes,
   MDHandleErr,
   MDRoute,
