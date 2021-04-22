@@ -19,10 +19,11 @@ const router = new KoaRouter();
 
 const routerList = require('./routers');
 
-routerList.forEach(item => {
-  const { method, path, controller } = item;
+const paramValidator = require('../middlewares/paramValidator');
 
-  router[method](path, controller);
+routerList.forEach(item => {
+  const { method, path, controller, valid } = item;
+  router[method](path, paramValidator(valid) ,controller);
 })
 
 module.exports = router

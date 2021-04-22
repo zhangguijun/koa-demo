@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/zhangguijun/koa2-demo#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@koa/cors": "^3.1.0",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",

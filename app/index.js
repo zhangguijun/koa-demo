@@ -1,11 +1,12 @@
 const Koa = require('koa');
 //  引入路由处理
-const router = require('./router/index');
+// const router = require('./router/index');
+const utils = require('./common/utils');
 const MD = require('./middlewares');
 const compose = require('koa-compose')
 const app = new Koa();
 
-const PORT = '1995';
+const PORT = '1998';
 const HOST = '0.0.0.0';
 //  最开始处理
 // app.use(async ctx => {
@@ -36,7 +37,7 @@ const HOST = '0.0.0.0';
 //  */
 
 // app.use(router.allowedMethods());
-
+app.context.utils = utils;
 app.use(compose(MD))
 app.on('error', (err, ctx) => {
   if (ctx) {
